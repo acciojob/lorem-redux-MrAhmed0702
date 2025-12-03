@@ -18,7 +18,7 @@ function App() {
 
       {loading && <h4>Loading...</h4>}
 
-      {!loading && (
+      {!loading && posts.length > 0 && (
         <ul>
           {posts.map((p, i) => (
             <li key={i}>{p.title} - {p.body}</li>

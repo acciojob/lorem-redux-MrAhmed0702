@@ -7,7 +7,7 @@ export const fetchPosts = () => {
     dispatch({ type: FETCH_POSTS_REQUEST });
 
     try {
-      const res = await fetch("/posts");
+      const res = await fetch("https://api.lorem.com/ipsum");
       const data = await res.json();
 
       dispatch({ type: FETCH_POSTS_SUCCESS, payload: data });
