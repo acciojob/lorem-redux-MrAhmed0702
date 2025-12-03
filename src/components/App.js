@@ -12,7 +12,7 @@ function App() {
 
   return (
     <div>
-      <h1>A short Naration of Lorem Ipsum</h1>
+      <h4>A short Naration of Lorem Ipsum</h4>
 
       {loading && <h4>Loading...</h4>}
 
