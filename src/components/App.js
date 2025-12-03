@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPosts } from "../store/actions";
+import 'regenerator-runtime/runtime';
 
 function App() {
   const dispatch = useDispatch();
@@ -12,7 +13,7 @@ function App() {
 
   return (
     <div>
-      <h4>A short Naration of Lorem Ipsum</h4>
+      <h1>Below Contains A title and Body gotten froma random API, Please take your time to Review</h1>
 
       {loading && <h4>Loading...</h4>}
 
