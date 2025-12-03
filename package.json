@@ -21,6 +21,7 @@
     "react-dom": "^16.14.0",
     "react-redux": "^7.2.8",
     "react-router": "^6.30.2",
+    "redux": "^4.2.1",
     "redux-thunk": "^3.1.0",
     "style-loader": "^1.2.1",
     "webpack-cli": "^3.3.12"
