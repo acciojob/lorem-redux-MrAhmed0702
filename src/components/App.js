@@ -21,7 +21,10 @@ function App() {
       {!loading && posts.length > 0 && (
         <ul>
           {posts.map((p, i) => (
-            <li key={i}>{p.title} - {p.body}</li>
+            <>
+              <li key={i}>{p.title}</li>
+              <li key={i + 1}>{p.body}</li>
+            </>
           ))}
         </ul>
       )}
