@@ -1,24 +1,27 @@
-export const FETCH_LOREM_REQUEST = "FETCH_LOREM_REQUEST";
-export const FETCH_LOREM_SUCCESS = "FETCH_LOREM_SUCCESS";
-export const FETCH_LOREM_FAILURE = "FETCH_LOREM_FAILURE";
+export const FETCH_DATA_REQUEST = 'FETCH_DATA_REQUEST';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
+export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
 
-export const fetchLorem = () => {
-  return async (dispatch) => {
-    dispatch({ type: FETCH_LOREM_REQUEST });
+export const fetchDataRequest = () => ({
+  type: FETCH_DATA_REQUEST,
+});
 
-    try {
-      const response = await fetch("https://api.lorem.com/ipsum");
-      const data = await response.json();
+export const fetchDataSuccess = (data) => ({
+  type: FETCH_DATA_SUCCESS,
+  payload: data,
+});
 
-      dispatch({
-        type: FETCH_LOREM_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: FETCH_LOREM_FAILURE,
-        error: error.message,
-      });
-    }
-  };
+export const fetchDataFailure = (error) => ({
+  type: FETCH_DATA_FAILURE,
+  payload: error,
+});
+
+export const fetchData = () => async (dispatch) => {
+  dispatch(fetchDataRequest());
+  try {
+    const response = await axios.get('https://api.lorem.com/ipsum');
+    dispatch(fetchDataSuccess(response.data));
+  } catch (error) {
+    dispatch(fetchDataFailure(error.message));
+  }
 };
