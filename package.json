@@ -21,6 +21,7 @@
     "react-router": "^6.30.2",
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
+    "regenerator-runtime": "^0.14.1",
     "style-loader": "^1.2.1",
     "webpack-cli": "^3.3.12"
   },
