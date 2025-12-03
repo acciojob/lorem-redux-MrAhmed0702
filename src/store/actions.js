@@ -1,27 +1,18 @@
-export const FETCH_DATA_REQUEST = 'FETCH_DATA_REQUEST';
-export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
-export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
+export const FETCH_POSTS_REQUEST = "FETCH_POSTS_REQUEST";
+export const FETCH_POSTS_SUCCESS = "FETCH_POSTS_SUCCESS";
+export const FETCH_POSTS_FAILURE = "FETCH_POSTS_FAILURE";
 
-export const fetchDataRequest = () => ({
-  type: FETCH_DATA_REQUEST,
-});
+export const fetchPosts = () => {
+  return async (dispatch) => {
+    dispatch({ type: FETCH_POSTS_REQUEST });
 
-export const fetchDataSuccess = (data) => ({
-  type: FETCH_DATA_SUCCESS,
-  payload: data,
-});
+    try {
+      const res = await fetch("/posts");
+      const data = await res.json();
 
-export const fetchDataFailure = (error) => ({
-  type: FETCH_DATA_FAILURE,
-  payload: error,
-});
-
-export const fetchData = () => async (dispatch) => {
-  dispatch(fetchDataRequest());
-  try {
-    const response = await axios.get('https://api.lorem.com/ipsum');
-    dispatch(fetchDataSuccess(response.data));
-  } catch (error) {
-    dispatch(fetchDataFailure(error.message));
-  }
+      dispatch({ type: FETCH_POSTS_SUCCESS, payload: data });
+    } catch (err) {
+      dispatch({ type: FETCH_POSTS_FAILURE, payload: err.message });
+    }
+  };
 };

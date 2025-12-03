@@ -1,25 +1,27 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { fetchData } from '../store/actions';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchPosts } from "./store/actions";
 
 function App() {
   const dispatch = useDispatch();
-  const { loading, data, error } = useSelector((state) => state);
+  const { loading, posts } = useSelector((state) => state);
 
   useEffect(() => {
-    dispatch(fetchData());
+    dispatch(fetchPosts());
   }, [dispatch]);
 
   return (
-    <div className="App">
+    <div>
       <h1>A short Narration of Lorem Ipsum</h1>
-      {loading && <p>Loading...</p>}
-      {error && <p>Error: {error}</p>}
-      {data && (
-        <div>
-          <h2>{data.title}</h2>
-          <p>{data.body}</p>
-        </div>
+
+      {loading && <h4>Loading...</h4>}
+
+      {!loading && (
+        <ul>
+          {posts.map((p, i) => (
+            <li key={i}>{p.title} - {p.body}</li>
+          ))}
+        </ul>
       )}
     </div>
   );

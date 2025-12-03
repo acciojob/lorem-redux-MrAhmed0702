@@ -1,37 +1,27 @@
 import {
-  FETCH_DATA_REQUEST,
-  FETCH_DATA_SUCCESS,
-  FETCH_DATA_FAILURE,
-} from './actions';
+  FETCH_POSTS_REQUEST,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POSTS_FAILURE,
+} from "./actions";
 
 const initialState = {
-  loading: false,
-  data: {},
-  error: '',
+  loading: true,
+  posts: [],
+  error: null,
 };
 
-const reducer = (state = initialState, action) => {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_DATA_REQUEST:
-      return {
-        ...state,
-        loading: true,
-      };
-    case FETCH_DATA_SUCCESS:
-      return {
-        ...state,
-        loading: false,
-        data: action.payload,
-      };
-    case FETCH_DATA_FAILURE:
-      return {
-        ...state,
-        loading: false,
-        error: action.payload,
-      };
+    case FETCH_POSTS_REQUEST:
+      return { ...state, loading: true };
+
+    case FETCH_POSTS_SUCCESS:
+      return { ...state, loading: false, posts: action.payload };
+
+    case FETCH_POSTS_FAILURE:
+      return { ...state, loading: false, error: action.payload };
+
     default:
       return state;
   }
-};
-
-export default reducer;
+}
