@@ -1,22 +1,27 @@
-import { FETCH_START, FETCH_SUCCESS, FETCH_ERROR } from "./actions";
+import {
+  FETCH_POSTS_REQUEST,
+  FETCH_POSTS_SUCCESS,
+  FETCH_POSTS_FAILURE,
+} from "./actions";
 
 const initialState = {
-  loading: false,
-  data: null,
+  loading: true,
+  posts: [],
   error: null,
 };
 
-const loremReducer = (state = initialState, action) => {
+export default function reducer(state = initialState, action) {
   switch (action.type) {
-    case FETCH_START:
-      return { ...state, loading: true, error: null };
-    case FETCH_SUCCESS:
-      return { ...state, loading: false, data: action.payload };
-    case FETCH_ERROR:
+    case FETCH_POSTS_REQUEST:
+      return { ...state, loading: true };
+
+    case FETCH_POSTS_SUCCESS:
+      return { ...state, loading: false, posts: action.payload };
+
+    case FETCH_POSTS_FAILURE:
       return { ...state, loading: false, error: action.payload };
+
     default:
       return state;
   }
-};
-
-export default loremReducer;
+}

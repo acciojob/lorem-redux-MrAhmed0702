@@ -1,13 +1,13 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { Provider } from "react-redux";
-import store from "./store";
-import App from "./components/App";
-import "./index.css";
+import React from 'react';
+import ReactDOM from 'react-dom';
+import 'regenerator-runtime/runtime';
+import App from './components/App';
+import { Provider } from 'react-redux';
+import store from './store/store';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
+ReactDOM.render(
   <Provider store={store}>
     <App />
-  </Provider>
+  </Provider>,
+  document.getElementById('root')
 );
